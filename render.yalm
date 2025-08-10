@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: backend-springboot
+    env: java
+    rootDir: backend   # Cambia esto si tu backend no está en la carpeta 'backend'
+    buildCommand: ./mvnw clean package
+    startCommand: java -jar target/*.jar
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://[POSTGRES_HOST]:[POSTGRES_PORT]/[POSTGRES_DB]
+      - key: SPRING_DATASOURCE_USERNAME
+        value: [POSTGRES_USER]
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: [POSTGRES_PASSWORD]
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: update
+      - key: SPRING_JPA_SHOW_SQL
+        value: "true"
+      - key: SERVER_PORT
+        value: "10000"  # O el puerto que Render asigne, puedes usar variable $PORT si configuras en la app
+      - key: STRIPE_APIKEY
+        value: sk_test_51ReswyIsUbiUMsbMzs7Hk754Nnc7YQA0o86uEF5iwz3TkKS63yCISRzKC9GUMkQqkcL5MkZRll7F08ioSQncuTEC0011aDShhu
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        value: dev.galiano@gmail.com
+      - key: SMTP_PASSWORD
+        value: ziya fakc jeju ojdt
+      - key: JWT_SECRET
+        value: r4nd0mS3cr3tK3y_1234567890_abcdEFGH
