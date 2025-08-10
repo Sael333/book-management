@@ -1,0 +1,67 @@
+spring:
+  web:
+    cors:
+      allowed-origins: "${SPRING_WEB_CORS_ALLOWED_ORIGINS:*}"
+      allowed-methods: "${SPRING_WEB_CORS_ALLOWED_METHODS:GET,POST,PUT,DELETE,PATCH,OPTIONS}"
+
+  autoconfigure:
+    exclude: "${SPRING_AUTOCONFIGURE_EXCLUDE:org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration}"
+
+  datasource:
+    url: "${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/postgres}"
+    username: "${SPRING_DATASOURCE_USERNAME:postgres}"
+    password: "${SPRING_DATASOURCE_PASSWORD:granada_2021}"
+    driver-class-name: "${SPRING_DATASOURCE_DRIVER_CLASS_NAME:org.postgresql.Driver}"
+
+  jpa:
+    hibernate:
+      dialect: "${SPRING_JPA_HIBERNATE_DIALECT:org.hibernate.dialect.PostgreSQLDialect}"
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: "${SPRING_JPA_PROPERTIES_HIBERNATE_HBM2DDL_AUTO:update}"
+    show-sql: ${SPRING_JPA_SHOW_SQL:true}
+
+  thymeleaf:
+    prefix: "${SPRING_THYMELEAF_PREFIX:classpath:/templates/}"
+
+server:
+  port: ${SERVER_PORT:8080}
+
+logging:
+  level:
+    org.hibernate.SQL: ${LOGGING_LEVEL_ORG_HIBERNATE_SQL:DEBUG}
+    type.descriptor.sql.BasicBinder: ${LOGGING_LEVEL_TYPE_DESCRIPTOR_SQL_BASICBINDER:TRACE}
+
+stripe:
+  apiKey: "${STRIPE_APIKEY:}"
+
+application:
+  cache:
+    refresh: ${APPLICATION_CACHE_REFRESH:7700000}
+  scheduled:
+    box-office:
+      update-state: "${APPLICATION_SCHEDULED_BOX_OFFICE_UPDATE_STATE:0 0/15 * * * ?}"
+  email:
+    smtp:
+      host: "${APPLICATION_EMAIL_SMTP_HOST:smtp.gmail.com}"
+      port: ${APPLICATION_EMAIL_SMTP_PORT:587}
+      user: "${APPLICATION_EMAIL_SMTP_USER:}"
+      password: "${APPLICATION_EMAIL_SMTP_PASSWORD:}"
+    subject: "${APPLICATION_EMAIL_SUBJECT:Andalusian rooms security code}"
+
+  ttlock:
+    url: "${APPLICATION_TTLOCK_URL:https://euapi.ttlock.com/}"
+    tokenPath: "${APPLICATION_TTLOCK_TOKENPATH:oauth2/token}"
+    unlockPath: "${APPLICATION_TTLOCK_UNLOCKPATH:v3/key/get}"
+    unlockCustomPath: "${APPLICATION_TTLOCK_UNLOCKCUSTOMPATH:v3/keyboardPwd/add}"
+    clientid: "${APPLICATION_TTLOCK_CLIENTID:}"
+    secretid: "${APPLICATION_TTLOCK_SECRETID:}"
+    user: "${APPLICATION_TTLOCK_USER:}"
+    pass: "${APPLICATION_TTLOCK_PASS:}"
+
+  security:
+    jwt:
+      secret: "${APPLICATION_SECURITY_JWT_SECRET:r4nd0mS3cr3tK3y_1234567890_abcdEFGH}"
+
+# Para los archivos clave, si usas en tu código, podrías crear props específicas o acceder directamente.
