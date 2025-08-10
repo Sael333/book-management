@@ -1,0 +1,59 @@
+spring:
+  web:
+    cors:
+      allowed-origins: "*"
+      allowed-methods: GET, POST, PUT, DELETE, PATCH, OPTIONS
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: granada_2021
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+    show-sql: true
+  thymeleaf:
+    prefix: classpath:/templates/
+  private: classpath:app.key
+  public: classpath:app.pub
+
+server:
+  port: 8080
+  #address: 192.168.1.130
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    type.descriptor.sql.BasicBinder: TRACE
+
+application:
+  cache:
+    refresh: 7700000
+  scheduled:
+    box-office:
+      update-state: "0 0/15 * * * ?"
+  email:
+    smtp:
+      host: smtp.gmail.com
+      port: 587
+      user: dev.galiano@gmail.com
+      password: ziya fakc jeju ojdt
+    subject: Andalusian rooms security code
+  ttlock:
+    url: https://euapi.ttlock.com/
+    tokenPath: oauth2/token
+    unlockPath: v3/key/get
+    unlockCustomPath: v3/keyboardPwd/add
+    clientid: 68e611e4397243d09b31dda45b1dfa8e
+    secretid: 060bd5781830656d1d76663b3535fcc1
+    user: sael12@hotmail.es
+    pass: 4f2ef6b8a64fd0d91e715087819374e9
+  security:
+    jwt:
+      secret: r4nd0mS3cr3tK3y_1234567890_abcdEFGH
