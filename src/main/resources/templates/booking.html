@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reserva Confirmada</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; text-align: center; padding: 20px;">
+<p th:utext="'<strong>' + ${emailMessageDto.securityCode} +
+                '</strong>🔑 : Código de acceso.<br>Nº Taquilla: ' + ${emailMessageDto.boxId} + '.<br>📦 Uso: Guardar tu equipaje. <br>⏳ Validez primer uso: 2 horas.<br>
+                🛄 Retirada: Genera un nuevo código con tu ID de reserva: <strong>' + ${emailMessageDto.bookingId} + '</strong>. <br> 📅 Reserva válida hasta: ' + ${emailMessageDto.endDate} +
+                '.<br>⚠ Después, será necesario hacer una nueva reserva.'"
+   style="font-size: 18px; color: #333; background-color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 30px;">
+</p>
+
+<h1 style="font-size: 36px; color: #4CAF50; margin-top: 0; font-weight: bold; letter-spacing: 2px;">
+    Andalusian Rooms Locker
+</h1>
+</body>
+</html>
