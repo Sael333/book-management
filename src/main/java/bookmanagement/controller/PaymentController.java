@@ -40,8 +40,8 @@ public class PaymentController {
 
         SessionCreateParams params = SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl("http://localhost:4200/success?session_id={CHECKOUT_SESSION_ID}")
-                .setCancelUrl("http://localhost:4200/cancel")
+                .setSuccessUrl("https://rooms-locker-dev.onrender.com/success?session_id={CHECKOUT_SESSION_ID}")
+                .setCancelUrl("https://rooms-locker-dev.onrender.com/cancel")
                 .addLineItem(
                         SessionCreateParams.LineItem.builder()
                                 .setPriceData(
