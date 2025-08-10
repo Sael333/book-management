@@ -32,6 +32,9 @@ logging:
     org.hibernate.SQL: DEBUG
     type.descriptor.sql.BasicBinder: TRACE
 
+stripe:
+  apiKey: sk_test_51ReswyIsUbiUMsbMzs7Hk754Nnc7YQA0o86uEF5iwz3TkKS63yCISRzKC9GUMkQqkcL5MkZRll7F08ioSQncuTEC0011aDShhu
+
 application:
   cache:
     refresh: 7700000
