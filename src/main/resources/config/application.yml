@@ -12,7 +12,8 @@ spring:
     username: "${SPRING_DATASOURCE_USERNAME:postgres}"
     password: "${SPRING_DATASOURCE_PASSWORD:granada_2021}"
     driver-class-name: "${SPRING_DATASOURCE_DRIVER_CLASS_NAME:org.postgresql.Driver}"
-
+  jackson:
+    time-zone: Europe/Madrid
   jpa:
     hibernate:
       dialect: "${SPRING_JPA_HIBERNATE_DIALECT:org.hibernate.dialect.PostgreSQLDialect}"

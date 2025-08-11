@@ -33,7 +33,7 @@ public class BookService {
         List<BoxOffice> boxOfficeList = bookingDao.getListBoxOfficeAvailables();
         if (!boxOfficeList.isEmpty()) {
             String passCode = String.valueOf(CodeGenerationUtils.generatePasscode());
-            bookingRequest.setEndDate(LocalDateTime.now().plusHours(4));
+            bookingRequest.setEndDate(LocalDateTime.now().plusHours(2));
             ttlockApiService.generateSecurityCode(boxOfficeList.get(0).getLockId(), bookingRequest, passCode);
             int bookingCodeId = CodeGenerationUtils.generateBookingCodeId();
             //sustituir por el id del servicio ttlock
@@ -63,7 +63,7 @@ public class BookService {
                     .email(booking.getUserId())
                     .name(booking.getName())
                     .phone(StringUtils.EMPTY)
-                    .endDate(LocalDateTime.now().plusMinutes(135))
+                    .endDate(LocalDateTime.now().plusMinutes(15))
                     .name(booking.getName())
                     .build();
             ttlockApiService.generateSecurityCode(boxOffice.getLockId(), bookingRequest, passCode);
