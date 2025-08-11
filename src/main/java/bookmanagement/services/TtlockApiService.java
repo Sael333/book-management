@@ -23,10 +23,10 @@ public class TtlockApiService {
         }
     }
 
-    public void generateSecurityCode(String lockId, BookingRequest bookingRequest, String passCode) {
+    public void generateSecurityCode(String lockId, BookingRequest bookingRequest, String expiration, String passCode) {
         KeyboardData keyboardData;
         try {
-            keyboardData = ttLockAPI.getSecurityCodeCustomByLockId(lockId, generateAccessToken(), bookingRequest, passCode);
+            keyboardData = ttLockAPI.getSecurityCodeCustomByLockId(lockId, generateAccessToken(), bookingRequest, expiration, passCode);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

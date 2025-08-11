@@ -33,8 +33,8 @@ public class BookService {
         List<BoxOffice> boxOfficeList = bookingDao.getListBoxOfficeAvailables();
         if (!boxOfficeList.isEmpty()) {
             String passCode = String.valueOf(CodeGenerationUtils.generatePasscode());
-            bookingRequest.setEndDate(LocalDateTime.now().plusHours(2));
-            ttlockApiService.generateSecurityCode(boxOfficeList.get(0).getLockId(), bookingRequest, passCode);
+            String expiration = LocalDateTime.now().plusHours(2).toString();
+            ttlockApiService.generateSecurityCode(boxOfficeList.get(0).getLockId(), bookingRequest, expiration, passCode);
             int bookingCodeId = CodeGenerationUtils.generateBookingCodeId();
             //sustituir por el id del servicio ttlock
             Booking booking = bookingMapper.mapBooking(bookingCodeId, Integer.parseInt(passCode), bookingRequest, boxOfficeList.get(0));
@@ -59,14 +59,15 @@ public class BookService {
         BoxOffice boxOffice = bookingDao.findBoxOfficeById(String.valueOf(booking.getBoxId()));
         if (booking.getEndDate().isAfter(LocalDateTime.now())) {
             String passCode = String.valueOf(CodeGenerationUtils.generatePasscode());
+            String expiration = LocalDateTime.now().plusMinutes(15).toString();
             BookingRequest bookingRequest = BookingRequest.builder()
                     .email(booking.getUserId())
                     .name(booking.getName())
                     .phone(StringUtils.EMPTY)
-                    .endDate(LocalDateTime.now().plusMinutes(15))
+                    .endDate(booking.getEndDate())
                     .name(booking.getName())
                     .build();
-            ttlockApiService.generateSecurityCode(boxOffice.getLockId(), bookingRequest, passCode);
+            ttlockApiService.generateSecurityCode(boxOffice.getLockId(), bookingRequest, expiration, passCode);
             booking.setCode(Integer.valueOf(passCode));
             booking.setLastUse(LocalDateTime.now());
             bookingDao.saveBooking(booking);

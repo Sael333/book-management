@@ -56,7 +56,7 @@ public class TTLockAPI {
             throw new Exception("Error al autenticar: " + response.body());
         }
     }
-    public KeyboardData getSecurityCodeCustomByLockId(String lockId, String accessToken, BookingRequest bookingRequest, String passCode) throws Exception {
+    public KeyboardData getSecurityCodeCustomByLockId(String lockId, String accessToken, BookingRequest bookingRequest, String expiration, String passCode) throws Exception {
         HttpClient client = HttpClient.newHttpClient();
 
         // Crear cuerpo de la solicitud para obtener el token
@@ -70,7 +70,7 @@ public class TTLockAPI {
         body.put("keyboardPwdType", "3");
         body.put("addType", "2");
         body.put("startDate", String.valueOf(ZonedDateTime.now(ZoneOffset.UTC).toInstant().toEpochMilli()));
-        body.put("endDate", String.valueOf(bookingRequest.getEndDate().atZone(ZoneOffset.ofHours(2)).withZoneSameInstant(ZoneOffset.UTC).toInstant().toEpochMilli()));
+        body.put("endDate", expiration);
         body.put("date", String.valueOf(System.currentTimeMillis()));
         String requestBody = encodeParams(body);
 
