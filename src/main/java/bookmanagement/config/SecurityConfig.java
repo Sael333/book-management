@@ -35,6 +35,7 @@ public class SecurityConfig implements WebMvcConfigurer{
                         .requestMatchers(new AntPathRequestMatcher("/v1/token")).permitAll()// Permitir acceso sin autenticación a /v1/process-payment
                         .requestMatchers(new AntPathRequestMatcher("/v1/checkBoxOfficeAvailable")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/v1/confirm-payment")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/v1/pickupLuggage")).permitAll()
                         .anyRequest().authenticated()  // Requiere autenticación para otros endpoints
                 )
                 .cors(Customizer.withDefaults())  // Habilitar CORS
