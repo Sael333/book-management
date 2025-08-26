@@ -1,6 +1,7 @@
 package bookmanagement.controller;
 
 import bookmanagement.model.request.BookingRequest;
+import bookmanagement.model.response.AvailabilityResponse;
 import bookmanagement.model.response.BookingResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
@@ -20,5 +21,5 @@ public interface BookingControllerApi {
             @Valid @RequestBody String bookingId) throws Exception;
 
     @GetMapping(value = "/checkBoxOfficeAvailable")
-    ResponseEntity<Boolean> checkBoxOfficeAvailable();
+    ResponseEntity<AvailabilityResponse> checkBoxOfficeAvailable();
 }

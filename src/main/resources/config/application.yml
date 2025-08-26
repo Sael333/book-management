@@ -60,8 +60,8 @@ application:
     secretid: "${APPLICATION_TTLOCK_SECRETID:}"
     user: "${APPLICATION_TTLOCK_USER:}"
     pass: "${APPLICATION_TTLOCK_PASS:}"
-
   security:
+    allowed-origin: "${APPLICATION_SECURITY_ALLOWED_ORIGIN:https://rooms-locker-dev.onrender.com}"
     jwt:
       secret: "${APPLICATION_SECURITY_JWT_SECRET:r4nd0mS3cr3tK3y_1234567890_abcdEFGH}"
 

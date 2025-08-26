@@ -1,6 +1,7 @@
 package bookmanagement.controller;
 
 import bookmanagement.model.request.BookingRequest;
+import bookmanagement.model.response.AvailabilityResponse;
 import bookmanagement.model.response.BookingResponse;
 import bookmanagement.services.BookService;
 import bookmanagement.services.BoxOfficeService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class BookingController implements BookingControllerApi {
+
     public final BookService bookService;
     public final BoxOfficeService boxOfficeService;
 
@@ -36,8 +38,8 @@ public class BookingController implements BookingControllerApi {
     }
 
     @Override
-    public ResponseEntity<Boolean> checkBoxOfficeAvailable() {
-        boolean hasAvailables = boxOfficeService.checkBoxOfficeAvailables();
-        return ResponseEntity.ok(hasAvailables);
+    public ResponseEntity<AvailabilityResponse> checkBoxOfficeAvailable() {
+        AvailabilityResponse availabilityResponse = boxOfficeService.checkBoxOfficeAvailables();
+        return ResponseEntity.ok(availabilityResponse);
     }
 }

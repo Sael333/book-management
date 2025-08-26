@@ -1,6 +1,7 @@
 package bookmanagement.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -8,15 +9,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 import java.util.List;
 
@@ -24,8 +22,13 @@ import java.util.List;
 @EnableWebMvc
 @Configuration
 public class SecurityConfig implements WebMvcConfigurer{
+
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    @Value("${application.security.allowed-origin}")
+    private String allowedOrigin;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -48,7 +51,7 @@ public class SecurityConfig implements WebMvcConfigurer{
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOrigins(List.of("https://rooms-locker-dev.onrender.com"));  // Configura los orígenes permitidos
+        corsConfiguration.setAllowedOrigins(List.of(allowedOrigin));  // Configura los orígenes permitidos
         corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));  // Métodos permitidos
         corsConfiguration.setAllowedHeaders(List.of("*"));  // Permite todas las cabeceras
         corsConfiguration.setAllowCredentials(true);  // Permite el uso de credenciales

@@ -30,4 +30,7 @@ public class BoxOffice {
 
     @Column(name = "AVAILABLE")
     private String available;
+
+    @Column(name = "SIZE")
+    private String size;
 }

@@ -8,6 +8,7 @@ import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,9 @@ public class PaymentController {
 
     private final JwtService jwtService;
     private final StripeProperties stripeProperties;
+
+    @Value("${application.security.allowed-origin}")
+    private String appUrl;
 
     @PostConstruct
     public void init() {
@@ -40,8 +44,8 @@ public class PaymentController {
 
         SessionCreateParams params = SessionCreateParams.builder()
                 .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl("https://rooms-locker-dev.onrender.com/success?session_id={CHECKOUT_SESSION_ID}")
-                .setCancelUrl("https://rooms-locker-dev.onrender.com/cancel")
+                .setSuccessUrl(appUrl.concat("/success?session_id={CHECKOUT_SESSION_ID}"))
+                .setCancelUrl(appUrl.concat("/cancel"))
                 .addLineItem(
                         SessionCreateParams.LineItem.builder()
                                 .setPriceData(

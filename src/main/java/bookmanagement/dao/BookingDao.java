@@ -42,7 +42,7 @@ public class BookingDao {
     public List<BoxOffice> getListBoxOfficeAvailables() {
         List<BoxOffice> boxOfficeList = new ArrayList<>();
         try {
-            boxOfficeList = boxOfficeRepository.findByAvailable("Y");
+            boxOfficeList = boxOfficeRepository.findByAvailableOrderByBoxId("Y");
         } catch (Exception e) {
             log.error("Error while getting box office availables :{}", e);
             throw e;
@@ -53,7 +53,7 @@ public class BookingDao {
     @Transactional
     public void updateStateByExpiration(){
         try {
-            List<BoxOffice> boxOfficeList = boxOfficeRepository.findByAvailable("N");
+            List<BoxOffice> boxOfficeList = boxOfficeRepository.findByAvailableOrderByBoxId("N");
             boxOfficeList.forEach(boxOffice -> {
                 if (boxOffice.getEndDate().isBefore(LocalDateTime.now())){
                     boxOffice.setAvailable("Y");

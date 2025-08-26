@@ -34,17 +34,18 @@ public class BookService {
         if (!boxOfficeList.isEmpty()) {
             String passCode = String.valueOf(CodeGenerationUtils.generatePasscode());
             String expiration = LocalDateTime.now().plusHours(2).toString();
-            ttlockApiService.generateSecurityCode(boxOfficeList.get(0).getLockId(), bookingRequest, expiration, passCode);
+            BoxOffice boxOffice = boxOfficeList.stream().filter(box -> box.getSize().equalsIgnoreCase(bookingRequest.getSize())).findFirst().get();
+            ttlockApiService.generateSecurityCode(boxOffice.getLockId(), bookingRequest, expiration, passCode);
             int bookingCodeId = CodeGenerationUtils.generateBookingCodeId();
             //sustituir por el id del servicio ttlock
-            Booking booking = bookingMapper.mapBooking(bookingCodeId, Integer.parseInt(passCode), bookingRequest, boxOfficeList.get(0));
-            bookingDao.generateBooking(bookingRequest, booking, boxOfficeList.get(0));
+            Booking booking = bookingMapper.mapBooking(bookingCodeId, Integer.parseInt(passCode), bookingRequest, boxOffice);
+            bookingDao.generateBooking(bookingRequest, booking, boxOffice);
             emailNotificationService.sendEmail(EmailMessageDto.builder()
                             .bookingId(bookingCodeId)
                             .to(bookingRequest.getEmail())
                             .securityCode(Integer.parseInt(passCode))
                             .name(bookingRequest.getName())
-                            .boxId(String.valueOf(boxOfficeList.get(0).getBoxId()))
+                            .boxId(String.valueOf(boxOffice.getBoxId()))
                             .endDate(bookingRequest.getEndDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")))
                             .build(), "booking");
             BookingResponse bookingResponse = bookingMapper.mapBookingResponse(bookingRequest, booking);

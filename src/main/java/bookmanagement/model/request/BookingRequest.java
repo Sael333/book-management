@@ -23,4 +23,6 @@ public class BookingRequest {
     private LocalDateTime endDate;
     @NotNull
     private boolean paymentConfirm;
+    @NotNull
+    private String size;
 }

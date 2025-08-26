@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface BoxOfficeRepository extends JpaRepository<BoxOffice, Integer> {
-    List<BoxOffice> findByAvailable(String available);
+    List<BoxOffice> findByAvailableOrderByBoxId(String available);
 }
