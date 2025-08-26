@@ -48,7 +48,7 @@ public class SecurityConfig implements WebMvcConfigurer{
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedOrigins(List.of("https://rooms-locker-dev.onrender.com"));  // Configura los orígenes permitidos
+        corsConfiguration.setAllowedOriginPatterns(List.of("*"));  // Configura los orígenes permitidos
         corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));  // Métodos permitidos
         corsConfiguration.setAllowedHeaders(List.of("*"));  // Permite todas las cabeceras
         corsConfiguration.setAllowCredentials(true);  // Permite el uso de credenciales
