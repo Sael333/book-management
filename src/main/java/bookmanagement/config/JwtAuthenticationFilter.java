@@ -31,7 +31,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (uri.startsWith("/v1/token") ||
                 uri.startsWith("/v1/checkBoxOfficeAvailable") ||
                 uri.startsWith("/v1/create-checkout-session") ||
-                uri.startsWith("/v1/confirm-payment")) {
+                uri.startsWith("/v1/confirm-payment") || 
+                uri.startsWith("/v1/pickupLuggage")) {
             filterChain.doFilter(request, response);
             return;
         }
