@@ -58,7 +58,7 @@ application:
     user: sael12@hotmail.es
     pass: 4f2ef6b8a64fd0d91e715087819374e9
   security:
-    allowed-origin: http://localhost:4200
+    allowed-origins: http://localhost:55847
     jwt:
       secret: r4nd0mS3cr3tK3y_1234567890_abcdEFGH
 
