@@ -24,7 +24,7 @@ public class PaymentController {
     private final JwtService jwtService;
     private final StripeProperties stripeProperties;
 
-    @Value("${application.security.allowed-origin}")
+    @Value("${application.security.allowed-origins}")
     private String appUrl;
 
     @PostConstruct
