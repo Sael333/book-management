@@ -61,7 +61,7 @@ public class BookService {
         BoxOffice boxOffice = bookingDao.findBoxOfficeById(String.valueOf(booking.getBoxId()));
         if (booking.getEndDate().isAfter(LocalDateTime.now())) {
             String passCode = String.valueOf(CodeGenerationUtils.generatePasscode());
-            String expiration = LocalDateTime.now().plusMinutes(15).toString();
+            String expiration = String.valueOf(LocalDateTime.now().plusMinutes(15).atZone(ZoneOffset.ofHours(2)).withZoneSameInstant(ZoneOffset.UTC).toInstant().toEpochMilli());
             BookingRequest bookingRequest = BookingRequest.builder()
                     .email(booking.getUserId())
                     .name(booking.getName())
