@@ -56,7 +56,7 @@ application:
     clientid: 68e611e4397243d09b31dda45b1dfa8e
     secretid: 060bd5781830656d1d76663b3535fcc1
     user: sael12@hotmail.es
-    pass: 4f2ef6b8a64fd0d91e715087819374e9
+    pass: 533b530bc1de4b64fe643506a6805800
   security:
     allowed-origins: http://localhost:55847
     jwt:
