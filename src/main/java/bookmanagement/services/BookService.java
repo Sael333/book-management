@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class BookService {
         List<BoxOffice> boxOfficeList = bookingDao.getListBoxOfficeAvailables();
         if (!boxOfficeList.isEmpty()) {
             String passCode = String.valueOf(CodeGenerationUtils.generatePasscode());
-            String expiration = LocalDateTime.now().plusHours(2).toString();
+            String expiration = String.valueOf(LocalDateTime.now().plusHours(2).atZone(ZoneOffset.ofHours(2)).withZoneSameInstant(ZoneOffset.UTC).toInstant().toEpochMilli());
             BoxOffice boxOffice = boxOfficeList.stream().filter(box -> box.getSize().equalsIgnoreCase(bookingRequest.getSize())).findFirst().get();
             ttlockApiService.generateSecurityCode(boxOffice.getLockId(), bookingRequest, expiration, passCode);
             int bookingCodeId = CodeGenerationUtils.generateBookingCodeId();
