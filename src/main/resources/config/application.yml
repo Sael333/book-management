@@ -35,7 +35,7 @@ logging:
     type.descriptor.sql.BasicBinder: ${LOGGING_LEVEL_TYPE_DESCRIPTOR_SQL_BASICBINDER:TRACE}
 
 stripe:
-  apiKey: "${STRIPE_APIKEY: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}"
+  apiKey: "${STRIPE_APIKEY:}"
 
 application:
   cache:
