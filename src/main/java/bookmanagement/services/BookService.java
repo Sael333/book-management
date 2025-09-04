@@ -65,7 +65,6 @@ public class BookService {
             BookingRequest bookingRequest = BookingRequest.builder()
                     .email(booking.getUserId())
                     .name(booking.getName())
-                    .phone(StringUtils.EMPTY)
                     .endDate(booking.getEndDate())
                     .name(booking.getName())
                     .build();

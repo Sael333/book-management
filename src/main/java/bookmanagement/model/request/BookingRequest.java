@@ -16,8 +16,6 @@ public class BookingRequest {
     @NotNull
     private String name;
     @NotNull
-    private String phone;
-    @NotNull
     private String email;
     @NotNull
     private LocalDateTime endDate;

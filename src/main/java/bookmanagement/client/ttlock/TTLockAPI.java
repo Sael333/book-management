@@ -66,7 +66,7 @@ public class TTLockAPI {
         body.put("accessToken", accessToken);
         body.put("lockId", lockId);
         body.put("keyboardPwd", passCode);
-        body.put("keyboardPwdName", bookingRequest.getName().concat(bookingRequest.getPhone()));
+        body.put("keyboardPwdName", bookingRequest.getName());
         body.put("keyboardPwdType", "3");
         body.put("addType", "2");
         body.put("startDate", String.valueOf(ZonedDateTime.now(ZoneOffset.UTC).toInstant().toEpochMilli()));
