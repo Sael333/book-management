@@ -5,9 +5,9 @@
 </head>
 <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; text-align: center; padding: 20px;">
 <p th:utext="'<strong>' + ${emailMessageDto.securityCode} +
-                '</strong>🔑 : Código de acceso.<br>Nº Taquilla: ' + ${emailMessageDto.boxId} + '.<br>📦 Uso: Retirar tu equipaje. <br>⏰Validez: 15 minutos.<br>⏳ Accion disponible hasta: '
+                '</strong>🔑 : Código de acceso.<br>Nº Taquilla: ' + ${emailMessageDto.boxId} + '.<br>⏳ Accion disponible hasta: '
                 + ${emailMessageDto.endDate} +
-                '.<br>⚠ Pasado este horario, el locker se bloqueará y deberás realizar una nueva reserva.'"
+                '.<br>⚠ Pasada esa fecha, el locker se bloqueará y deberás realizar una nueva reserva.'"
    style="font-size: 18px; color: #333; background-color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 30px;">
 </p>
 
